@@ -1,9 +1,9 @@
-const refs = {
-  days: document.querySelector('[data-value="days"]'),
-  hours: document.querySelector('[data-value="hours"]'),
-  minutes: document.querySelector('[data-value="mins"]'),
-  seconds: document.querySelector('[data-value="secs"]'),
-};
+//const refs = {
+// days: document.querySelector('[data-value="days"]'),
+// hours: document.querySelector('[data-value="hours"]'),
+// minutes: document.querySelector('[data-value="mins"]'),
+//seconds: document.querySelector('[data-value="secs"]'),
+//};
 
 class CountdownTimer {
   constructor({ selector, targetDate }) {
@@ -40,7 +40,7 @@ class CountdownTimer {
   timeClock() {
     const startTime = this.targetDate.getTime();
 
-    setInterval(() => {
+    this.timerId = setInterval(() => {
       const currentTime = Date.now();
       const deltaTime = startTime - currentTime;
       const { days, hours, mins, secs } = this.getTimeComponents(deltaTime);
@@ -53,8 +53,8 @@ class CountdownTimer {
 
   //refs.days.textContent = "00";
   // refs.hours.textContent = "00";
-  // refs.minutes.textContent = "0";
-  //refs.seconds.textContent = "0";
+  // refs.minutes.textContent = "00";
+  //refs.seconds.textContent = "00";
   // }
 }
 
