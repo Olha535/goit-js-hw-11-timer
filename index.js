@@ -47,7 +47,7 @@ class CountdownTimer {
       this.screenDate({ days, hours, mins, secs });
 
       if (deltaTime <= 0) {
-        clearTimer(this.timerId);
+        this.clearTimer(this.timerId);
       }
     }, 1000);
   }
