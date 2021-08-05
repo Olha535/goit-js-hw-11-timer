@@ -45,17 +45,21 @@ class CountdownTimer {
       const deltaTime = startTime - currentTime;
       const { days, hours, mins, secs } = this.getTimeComponents(deltaTime);
       this.screenDate({ days, hours, mins, secs });
+
+      if (deltaTime <= 0) {
+        clearTimer(this.timerId);
+      }
     }, 1000);
   }
 
-  //stopTimer() {
-  //clearInterval(this.timerId);
+  clearTimer() {
+    clearInterval(this.timerId);
 
-  //refs.days.textContent = "00";
-  // refs.hours.textContent = "00";
-  // refs.minutes.textContent = "00";
-  //refs.seconds.textContent = "00";
-  // }
+    refs.days.textContent = "00";
+    refs.hours.textContent = "00";
+    refs.minutes.textContent = "00";
+    refs.seconds.textContent = "00";
+  }
 }
 
 const timer = new CountdownTimer({
@@ -63,4 +67,4 @@ const timer = new CountdownTimer({
   targetDate: new Date("Aug 22, 2021"),
 });
 
-console.log(timer);
+timer.timeClock();
