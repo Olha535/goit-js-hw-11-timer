@@ -10,6 +10,7 @@ class CountdownTimer {
     this.selector = selector;
     this.targetDate = targetDate;
     this.timerId = null;
+    this.timeClock();
   }
 
   getTimeComponents(time) {
@@ -66,5 +67,3 @@ const timer = new CountdownTimer({
   selector: "#timer-1",
   targetDate: new Date("Aug 22, 2021"),
 });
-
-timer.timeClock();
