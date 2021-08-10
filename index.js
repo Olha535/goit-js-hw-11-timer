@@ -1,17 +1,21 @@
-const refs = {
-  days: document.querySelector('[data-value="days"]'),
-  hours: document.querySelector('[data-value="hours"]'),
-  minutes: document.querySelector('[data-value="mins"]'),
-  seconds: document.querySelector('[data-value="secs"]'),
-};
+//const refs = {
+//days: document.querySelector('[data-value="days"]'),
+//hours: document.querySelector('[data-value="hours"]'),
+//minutes: document.querySelector('[data-value="mins"]'),
+//seconds: document.querySelector('[data-value="secs"]'),
+//};
 
 class CountdownTimer {
-  constructor({ selector, targetDate, onTick }) {
+  constructor({ selector, targetDate }) {
     this.selector = selector;
     this.targetDate = targetDate;
     this.timerId = null;
     this.timeClock();
-    this.onTick = onTick;
+
+    this.days = document.querySelector(`${selector} [data-value="days"]`);
+    this.hours = document.querySelector(`${selector} [data-value="hours"]`);
+    this.minutes = document.querySelector(`${selector} [data-value="minutes"]`);
+    this.seconds = document.querySelector(`${selector} [data-value="seconds"]`);
   }
 
   getTimeComponents(time) {
@@ -39,8 +43,7 @@ class CountdownTimer {
       const currentTime = Date.now();
       const deltaTime = startTime - currentTime;
       const time = this.getTimeComponents(deltaTime);
-      //this.screenDate(time);
-      this.onTick(time);
+      this.screenDate(time);
 
       if (deltaTime <= 0) {
         this.clearTimer(this.timerId);
@@ -48,25 +51,24 @@ class CountdownTimer {
     }, 1000);
   }
 
+  screenDate({ days, hours, mins, secs }) {
+    this.days.textContent = days;
+    this.hours.textContent = hours;
+    this.minutes.textContent = mins;
+    this.seconds.textContent = secs;
+  }
+
   clearTimer() {
     clearInterval(this.timerId);
 
-    refs.days.textContent = "00";
-    refs.hours.textContent = "00";
-    refs.minutes.textContent = "00";
-    refs.seconds.textContent = "00";
+    this.days.textContent = "00";
+    this.hours.textContent = "00";
+    this.minutes.textContent = "00";
+    this.seconds.textContent = "00";
   }
 }
 
 const timer = new CountdownTimer({
   selector: "#timer-1",
   targetDate: new Date("Aug 22, 2021"),
-  onTick: screenDate,
 });
-
-function screenDate({ days, hours, mins, secs }) {
-  refs.days.textContent = days;
-  refs.hours.textContent = hours;
-  refs.minutes.textContent = mins;
-  refs.seconds.textContent = secs;
-}
