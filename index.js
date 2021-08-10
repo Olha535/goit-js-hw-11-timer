@@ -14,8 +14,8 @@ class CountdownTimer {
 
     this.days = document.querySelector(`${selector} [data-value="days"]`);
     this.hours = document.querySelector(`${selector} [data-value="hours"]`);
-    this.minutes = document.querySelector(`${selector} [data-value="minutes"]`);
-    this.seconds = document.querySelector(`${selector} [data-value="seconds"]`);
+    this.minutes = document.querySelector(`${selector} [data-value="mins"]`);
+    this.seconds = document.querySelector(`${selector} [data-value="secs"]`);
   }
 
   getTimeComponents(time) {
